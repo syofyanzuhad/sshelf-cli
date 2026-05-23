@@ -1,41 +1,105 @@
-<p align="center">
-    <img title="Laravel Zero" height="100" src="https://raw.githubusercontent.com/laravel-zero/docs/master/images/logo/laravel-zero-readme.png" alt="Laravel Zero Logo" />
-</p>
+# Sshelf CLI
 
-<p align="center">
-  <a href="https://github.com/laravel-zero/framework/actions"><img src="https://github.com/laravel-zero/laravel-zero/actions/workflows/tests.yml/badge.svg" alt="Build Status" /></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/dt/laravel-zero/framework.svg" alt="Total Downloads" /></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/v/laravel-zero/framework.svg?label=stable" alt="Latest Stable Version" /></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/l/laravel-zero/framework.svg" alt="License" /></a>
-</p>
+> Elegant command-line interface for managing your Sshelf instance.
 
-Laravel Zero was created by [Nuno Maduro](https://github.com/nunomaduro) and [Owen Voke](https://github.com/owenvoke), and is a micro-framework that provides an elegant starting point for your console application. It is an **unofficial** and customized version of Laravel optimized for building command-line applications.
+Sshelf CLI allows you to manage your servers, SSH keys, tags, and execute remote commands directly from your terminal.
 
-- Built on top of the [Laravel](https://laravel.com) components.
-- Optional installation of Laravel [Eloquent](https://laravel-zero.com/docs/database/), Laravel [Logging](https://laravel-zero.com/docs/logging/) and many others.
-- Supports interactive [menus](https://laravel-zero.com/docs/build-interactive-menus/) and [desktop notifications](https://laravel-zero.com/docs/send-desktop-notifications/) on Linux, Windows & MacOS.
-- Ships with a [Scheduler](https://laravel-zero.com/docs/task-scheduling/) and  a [Standalone Compiler](https://laravel-zero.com/docs/build-a-standalone-application/).
-- Integration with [Collision](https://github.com/nunomaduro/collision) - Beautiful error reporting
-- Follow the creator Nuno Maduro:
-    - YouTube: **[youtube.com/@nunomaduro](https://www.youtube.com/@nunomaduro)** — Videos every weekday
-    - Twitch: **[twitch.tv/enunomaduro](https://www.twitch.tv/enunomaduro)** — Streams (almost) every weekday
-    - Twitter / X: **[x.com/enunomaduro](https://x.com/enunomaduro)**
-    - LinkedIn: **[linkedin.com/in/nunomaduro](https://www.linkedin.com/in/nunomaduro)**
-    - Instagram: **[instagram.com/enunomaduro](https://www.instagram.com/enunomaduro)**
-    - Tiktok: **[tiktok.com/@enunomaduro](https://www.tiktok.com/@enunomaduro)**
+---
 
-------
+## Installation
 
-## Documentation
+### Prerequisites
+- PHP 8.2 or higher
 
-For full documentation, visit [laravel-zero.com](https://laravel-zero.com/).
+### Local Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/sshelf-cli.git
+   cd sshelf-cli
+   ```
+2. Install dependencies:
+   ```bash
+   composer install
+   ```
+3. Use the `sshelf` binary:
+   ```bash
+   ./sshelf --version
+   ```
 
-## Support the development
-**Do you like this project? Support it by donating**
+### Global Installation (Optional)
+To use `sshelf` from anywhere, create a symlink:
+```bash
+sudo ln -s "$(pwd)/sshelf" /usr/local/bin/sshelf
+```
 
-- PayPal: [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L)
-- Patreon: [Donate](https://www.patreon.com/nunomaduro)
+---
+
+## Getting Started
+
+### 1. Authentication
+Login to your Sshelf instance using your API URL and Bearer Token:
+```bash
+sshelf auth:login
+```
+
+Check your connection status:
+```bash
+sshelf ping
+```
+
+### 2. Manage Servers
+List all your servers:
+```bash
+sshelf server:list
+```
+
+Add a new server:
+```bash
+sshelf server:add --name="Web-01" --host="1.2.3.4" --username="root"
+```
+
+### 3. Remote Execution
+Execute a command on a remote server by ID:
+```bash
+sshelf exec 1 "uptime"
+```
+
+Run a saved Quick Command:
+```bash
+sshelf qc:run 5
+```
+
+---
+
+## Core Commands
+
+| Command | Description |
+| :--- | :--- |
+| `auth:login` | Authenticate with your Sshelf instance |
+| `auth:status` | Show current authentication status |
+| `ping` | Check connectivity to your Sshelf instance |
+| `server:list` | List all servers (supports `--json`, `--group`) |
+| `server:add` | Add a new server |
+| `exec` | Execute a command on a remote server |
+| `qc:run` | Run a saved quick command |
+| `key:list` | List all SSH keys |
+| `tag:list` | List all tags |
+| `completion` | Generate shell completion scripts |
+
+---
+
+## Shell Completion
+Generate completion scripts for your favorite shell:
+
+```bash
+# Zsh
+sshelf completion zsh > /usr/local/share/zsh/site-functions/_sshelf
+
+# Bash
+sshelf completion bash >> ~/.bashrc
+```
+
+---
 
 ## License
-
-Laravel Zero is an open-source software licensed under the MIT license.
+Sshelf CLI is open-source software licensed under the MIT license.
