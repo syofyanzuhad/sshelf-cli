@@ -11,7 +11,7 @@ class ExecCommand extends Command
 
     protected $signature = 'exec
         {server            : Server ID}
-        {command?          : Command to run (or use --stdin)}
+        {cmd?             : Command to run (or use --stdin)}
         {--stdin           : Read command from stdin}
         {--json            : Output as JSON}
         {--timeout=30      : Request timeout in seconds}';
@@ -33,7 +33,7 @@ class ExecCommand extends Command
                 return self::FAILURE;
             }
         } else {
-            $command = $this->argument('command');
+            $command = $this->argument('cmd');
             if (empty($command)) {
                 $this->fmt->error(
                     $this,

@@ -11,7 +11,7 @@ class RunCommand extends Command
 
     protected $signature = 'qc:run
         {id    : Quick command ID}
-        {--json: Output as JSON}';
+        {--json : Output as JSON}';
 
     protected $description = 'Run a saved quick command on its server';
 
