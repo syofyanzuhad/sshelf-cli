@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(\App\Services\ConfigManager::class);
+        $this->app->singleton(\App\Services\ApiClient::class);
+        $this->app->singleton(\App\Services\OutputFormatter::class);
     }
 }
