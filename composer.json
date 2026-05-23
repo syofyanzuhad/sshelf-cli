@@ -1,5 +1,5 @@
 {
-    "name": "sshelf/sshelf-cli",
+    "name": "syofyanzuhad/sshelf-cli",
     "description": "Sshelf CLI — Elegant command-line interface for managing your Sshelf instance.",
     "keywords": ["sshelf", "cli", "laravel-zero", "console"],
     "license": "MIT",
