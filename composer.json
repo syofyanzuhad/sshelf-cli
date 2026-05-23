@@ -3,6 +3,12 @@
     "description": "Sshelf CLI — Elegant command-line interface for managing your Sshelf instance.",
     "keywords": ["sshelf", "cli", "laravel-zero", "console"],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Syofyan Zuhad",
+            "email": "mail@syofyanzuhad.dev"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "illuminate/http": "^12.17",
