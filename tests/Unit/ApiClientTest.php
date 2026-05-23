@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
     $this->config = Mockery::mock(ConfigManager::class);
-    $this->config->shouldReceive('get')->with('url', '')->andReturn('https://api.sshelf.com');
+    $this->config->shouldReceive('get')->with('url', '')->andReturn('https://sshelf.syofyanzuhad.dev');
     $this->config->shouldReceive('get')->with('token', '')->andReturn('secret-token');
     $this->config->shouldReceive('get')->with('timeout', 30)->andReturn(30);
 
@@ -15,7 +15,7 @@ beforeEach(function () {
 
 test('it makes GET requests with proper headers', function () {
     Http::fake([
-        'api.sshelf.com/*' => Http::response(['status' => 'ok']),
+        'sshelf.syofyanzuhad.dev/*' => Http::response(['status' => 'ok']),
     ]);
 
     $response = $this->client->get('ping');
@@ -23,7 +23,7 @@ test('it makes GET requests with proper headers', function () {
     expect($response->json())->toBe(['status' => 'ok']);
     
     Http::assertSent(function ($request) {
-        return $request->url() === 'https://api.sshelf.com/ping' &&
+        return $request->url() === 'https://sshelf.syofyanzuhad.dev/ping' &&
                $request->hasHeader('Authorization', 'Bearer secret-token') &&
                $request->hasHeader('Accept', 'application/json');
     });
@@ -36,7 +36,7 @@ test('it makes POST requests', function () {
 
     Http::assertSent(function ($request) {
         return $request->method() === 'POST' &&
-               $request->url() === 'https://api.sshelf.com/servers' &&
+               $request->url() === 'https://sshelf.syofyanzuhad.dev/servers' &&
                $request['name'] === 'Test Server';
     });
 });
@@ -48,7 +48,7 @@ test('it makes PUT requests', function () {
 
     Http::assertSent(function ($request) {
         return $request->method() === 'PUT' &&
-               $request->url() === 'https://api.sshelf.com/servers/1' &&
+               $request->url() === 'https://sshelf.syofyanzuhad.dev/servers/1' &&
                $request['name'] === 'Updated Server';
     });
 });
@@ -60,6 +60,6 @@ test('it makes DELETE requests', function () {
 
     Http::assertSent(function ($request) {
         return $request->method() === 'DELETE' &&
-               $request->url() === 'https://api.sshelf.com/servers/1';
+               $request->url() === 'https://sshelf.syofyanzuhad.dev/servers/1';
     });
 });

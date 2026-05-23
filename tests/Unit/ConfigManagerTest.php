@@ -25,24 +25,24 @@ test('it creates config directory and file', function () {
 
 test('it can set and get configuration', function () {
     $config = new ConfigManager();
-    $config->set('url', 'https://api.sshelf.com');
+    $config->set('url', 'https://sshelf.syofyanzuhad.dev');
     $config->set('token', 'secret-token');
 
-    expect($config->get('url'))->toBe('https://api.sshelf.com');
+    expect($config->get('url'))->toBe('https://sshelf.syofyanzuhad.dev');
     expect($config->get('token'))->toBe('secret-token');
 });
 
 test('it persists configuration to disk', function () {
     $config = new ConfigManager();
-    $config->set('url', 'https://api.sshelf.com');
+    $config->set('url', 'https://sshelf.syofyanzuhad.dev');
     
     $config2 = new ConfigManager();
-    expect($config2->get('url'))->toBe('https://api.sshelf.com');
+    expect($config2->get('url'))->toBe('https://sshelf.syofyanzuhad.dev');
 });
 
 test('it sets correct file permissions', function () {
     $config = new ConfigManager();
-    $config->set('url', 'https://api.sshelf.com');
+    $config->set('url', 'https://sshelf.syofyanzuhad.dev');
     
     $path = $this->tempDir . DIRECTORY_SEPARATOR . '.sshelf' . DIRECTORY_SEPARATOR . 'config.json';
     expect(substr(sprintf('%o', fileperms($path)), -4))->toBe('0600');
@@ -52,7 +52,7 @@ test('it can check authentication status', function () {
     $config = new ConfigManager();
     expect($config->isAuthenticated())->toBeFalse();
 
-    $config->set('url', 'https://api.sshelf.com');
+    $config->set('url', 'https://sshelf.syofyanzuhad.dev');
     expect($config->isAuthenticated())->toBeFalse();
 
     $config->set('token', 'secret-token');

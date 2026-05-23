@@ -19,7 +19,7 @@ class LoginCommand extends Command
         $this->newLine();
 
         $url = $this->option('url')
-            ?? $this->ask('API Base URL', $config->get('url', 'https://'));
+            ?? $this->ask('API Base URL', $config->get('url', 'https://sshelf.syofyanzuhad.dev'));
 
         $token = $this->option('token')
             ?? $this->secret('Bearer Token');

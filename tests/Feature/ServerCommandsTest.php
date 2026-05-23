@@ -5,13 +5,13 @@ use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
     $this->config = app(ConfigManager::class);
-    $this->config->set('url', 'https://api.sshelf.com');
+    $this->config->set('url', 'https://sshelf.syofyanzuhad.dev');
     $this->config->set('token', 'secret-token');
 });
 
 test('server:list command displays servers', function () {
     Http::fake([
-        'api.sshelf.com/servers*' => Http::response([
+        'sshelf.syofyanzuhad.dev/servers*' => Http::response([
             'data' => [
                 ['id' => 1, 'name' => 'Web 1', 'host' => '1.1.1.1', 'port' => 22, 'username' => 'root', 'auth_type' => 'key', 'group' => null],
                 ['id' => 2, 'name' => 'Web 2', 'host' => '2.2.2.2', 'port' => 22, 'username' => 'ubuntu', 'auth_type' => 'password', 'group' => null],
@@ -29,7 +29,7 @@ test('server:list command displays servers', function () {
 
 test('server:add command works', function () {
     Http::fake([
-        'api.sshelf.com/servers' => Http::response(['data' => ['id' => 123]], 201),
+        'sshelf.syofyanzuhad.dev/servers' => Http::response(['data' => ['id' => 123]], 201),
     ]);
 
     $this->artisan('server:add', [
@@ -42,7 +42,7 @@ test('server:add command works', function () {
 
 test('server:get command displays server details', function () {
     Http::fake([
-        'api.sshelf.com/servers/1' => Http::response([
+        'sshelf.syofyanzuhad.dev/servers/1' => Http::response([
             'data' => [
                 'id' => 1, 
                 'name' => 'Web 1', 
@@ -63,7 +63,7 @@ test('server:get command displays server details', function () {
 
 test('server:delete command works', function () {
     Http::fake([
-        'api.sshelf.com/servers/1' => Http::sequence()
+        'sshelf.syofyanzuhad.dev/servers/1' => Http::sequence()
             ->push(['data' => ['id' => 1, 'name' => 'Web 1']], 200)
             ->push([], 204),
     ]);
